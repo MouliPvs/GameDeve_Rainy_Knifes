@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    /// <summary>
+    /// Created A new variable called "anim" of datatype/property "Animator"
+    /// Created A new bool varaible called "Walk" in -> Animator-Parameters-'+' Symbmol-bool
+    /// We get the component i.e Animation(Idle_0) & store it in "anim"
+    /// Creating Condition For Transition Between Walk & Idle -> Conditions - '+' - walk true/false
+    /// Unchecking The Exit Time
+    /// Reducing The transition Time to 0.1
+    /// </summary>
     private Animator anim;
+
+    /// <summary>
+    /// Idle_0 sprite is attached to the player object
+    /// Created A new variable called "sr" of datatype/property "SpriteRender"
+    /// We get the component i.e Sprite(Idle_0) & store it in "sr"
+    /// </summary>
     private SpriteRenderer sr;
 
     private float speed = 3f;
