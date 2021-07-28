@@ -68,4 +68,20 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Built In fucntion to detect collisons
+    /// </summary>
+    /// <param name="target"></param>
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        //We detect the knife with the knife tag
+        //Creating Knife Tag : Go to knifePrefab - Tags - Add Tag - Plus Symbol - Name it Knife - save 
+        //Adding Tag : Click on tags - Select Knifes
+        if (target.tag == "Knife")
+        {
+            //timeScale will stop our game
+            Time.timeScale = 0f;
+        }
+    }
+
 }
