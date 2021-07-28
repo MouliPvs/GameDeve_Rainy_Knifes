@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
 
     void Awake()
     {
+        //Always use GetComponent in awake function only
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
