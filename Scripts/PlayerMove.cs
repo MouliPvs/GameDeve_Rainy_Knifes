@@ -23,6 +23,11 @@ public class PlayerMove : MonoBehaviour
 
     private float speed = 3f;
 
+    //mix_X & max_X are the left & right boundaries of our game
+    //We restric the player to move only between min_X & max_X
+    private float min_X = -2.7f;
+    private float max_X = 2.7f;
+
     void Awake()
     {
         //Always use GetComponent in awake function only
@@ -41,6 +46,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         Player_Movement();
+        PlayerBounds();
 
     }
 
@@ -69,6 +75,27 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Not Allows The PLayer To MOve Outside The Boundaries(i.e min_X , max_X)
+    /// </summary>
+    void PlayerBounds()
+    {
+        //Creating A Variable called "temp" Of type "Vector3" for storing the player current position
+        Vector3 temp = transform.position;
+
+        if(temp.x > max_X)
+        {
+            temp.x = max_X;
+        }else if(temp.x < min_X)
+        {
+            temp.x = min_X;
+        }
+
+        //Assigning the changed position to the orginal transform.position
+        transform.position = temp;
+
+
+    }
     //Restarts The Game when the knife touches the player
     IEnumerator RestartGame()
     {

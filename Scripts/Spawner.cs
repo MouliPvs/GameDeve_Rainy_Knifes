@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour
 
     //This is the span where the knifes will be spawned
     //Always declare these variables in start function so that if we restart game the values will be reset
+
+    //mix_X & max_X are the left & right boundaries of our game
+    //We spwan knifes randomly between min_X & max_X
     private float min_X = -2.7f;
     private float max_X = 2.7f;
     // Start is called before the first frame update
