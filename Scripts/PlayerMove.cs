@@ -33,7 +33,8 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Rsete the timescale from 0 to 1 while restarting the game
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -68,6 +69,17 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    //Restarts The Game when the knife touches the player
+    IEnumerator RestartGame()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        //Instead of this we can import unity engine & reduce the syntax
+        UnityEngine.SceneManagement.SceneManager.LoadScene
+            (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+    }
+
     /// <summary>
     /// Built In fucntion to detect collisons
     /// </summary>
@@ -77,10 +89,14 @@ public class PlayerMove : MonoBehaviour
         //We detect the knife with the knife tag
         //Creating Knife Tag : Go to knifePrefab - Tags - Add Tag - Plus Symbol - Name it Knife - save 
         //Adding Tag : Click on tags - Select Knifes
+        //If knife hit the player then our game stops
         if (target.tag == "Knife")
         {
-            //timeScale will stop our game
+            //timeScale will stop our game nothing can move in our game
             Time.timeScale = 0f;
+
+            //calling restart method to restart the game
+            StartCoroutine(RestartGame());
         }
     }
 
