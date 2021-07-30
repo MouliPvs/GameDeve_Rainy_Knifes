@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -28,6 +29,15 @@ public class PlayerMove : MonoBehaviour
     private float min_X = -2.7f;
     private float max_X = 2.7f;
 
+    /// <summary>
+    /// Count time in seconds using "Coroutine" "CountTime()" & store it in "timer" variable of "int" datatype
+    /// Change the time to "timer" in timer_text
+    /// </summary>
+    public Text timer_Text;
+
+    //This variable is used to count the time
+    private int timer;
+
     void Awake()
     {
         //Always use GetComponent in awake function only
@@ -40,6 +50,7 @@ public class PlayerMove : MonoBehaviour
     {
         //Rsete the timescale from 0 to 1 while restarting the game
         Time.timeScale = 1f;
+        StartCoroutine(CountTime());
     }
 
     // Update is called once per frame
@@ -96,7 +107,11 @@ public class PlayerMove : MonoBehaviour
 
 
     }
-    //Restarts The Game when the knife touches the player
+    /// <summary>
+    /// Restarts The Game when the knife touches the player
+    /// This function is called in "OnTriggerEnter2D"
+    /// </summary>
+    /// <returns></returns>
     IEnumerator RestartGame()
     {
         yield return new WaitForSecondsRealtime(2f);
@@ -108,7 +123,21 @@ public class PlayerMove : MonoBehaviour
     }
 
     /// <summary>
+    /// Calculates The Time In Seconds
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator CountTime()
+    {
+        yield return new WaitForSeconds(1f);
+        timer++;
+        timer_Text.text = "Timer: " + timer;
+
+        StartCoroutine(CountTime());
+    }
+
+    /// <summary>
     /// Built In fucntion to detect collisons
+    /// It is not required to call this funtion
     /// </summary>
     /// <param name="target"></param>
     private void OnTriggerEnter2D(Collider2D target)
